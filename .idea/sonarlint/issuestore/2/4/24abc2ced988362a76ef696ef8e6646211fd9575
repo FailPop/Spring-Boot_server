@@ -1,0 +1,14 @@
+
+b	java:S112?"FDefine and throw a dedicated exception instead of using a generic one.(Î¿‚8øÜìà¹1
+}
+java:S14882"`Immediately return this expression instead of assigning it to the temporary variable "response".(îÿ¸²8ùÜìà¹1
+>
+java:S5542@"Use a secure padding scheme.(»¦µªúÿÿÿÿ8…Ýìà¹1
+[
+java:S4719E"9Replace charset name argument with StandardCharsets.UTF_8(³Ò–¿üÿÿÿÿ8†Ýìà¹1
+s
+java:S1128"QRemove this unused import 'org.springframework.web.bind.annotation.ResponseBody'.(•¶¶êøÿÿÿÿ8ù­¶à¹1
+^
+java:S1128"ARemove this unused import 'java.io.UnsupportedEncodingException'.(Ãµ…“8‡Ýìà¹1
+d
+java:S1128"BRemove this unused import 'java.security.spec.X509EncodedKeySpec'.(¢ŸÇ¨úÿÿÿÿ8‡Ýìà¹1
