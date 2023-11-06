@@ -4,10 +4,10 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.RestController;
-
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 import java.io.UnsupportedEncodingException;
+import java.nio.charset.StandardCharsets;
 import java.security.KeyPair;
 import java.security.KeyPairGenerator;
 import java.security.NoSuchAlgorithmException;
@@ -15,6 +15,7 @@ import java.security.interfaces.RSAPrivateKey;
 import java.security.interfaces.RSAPublicKey;
 import java.security.spec.X509EncodedKeySpec;
 import java.util.Base64;
+import java.util.List;
 import javax.crypto.Cipher;
 
 @RestController
@@ -37,7 +38,6 @@ public class ServerController {
         try {
             logger.info("Reseive Public Key: " + publicKeyBase64);
             return Base64.getEncoder().encodeToString(serverPublicKey.getEncoded());
-
         } catch (Exception e) {
             return "Error: " + e.getMessage();
         }
@@ -49,15 +49,15 @@ public class ServerController {
         return Base64.getEncoder().encodeToString(serverPublicKey.getEncoded());
     }
 
-    @PostMapping("/receiveMessage")
-    public String receiveMessage(@RequestBody String encryptedMessage) {
+    @PostMapping("/receiveFile")
+    public String receiveFile(@RequestBody List<String> encryptedBlocks) {
         try {
-            logger.info("Receive Message: " + encryptedMessage);
-            String decryptedMessage = decryptWithServerPrivateKey(encryptedMessage);
-            logger.info("Decrypted Message:" + decryptedMessage);
-
-            String response = "Accept: " + decryptedMessage;
-            return response;
+            StringBuilder decryptedMessage = new StringBuilder();
+            for (String encryptedBlock : encryptedBlocks) {
+                decryptedMessage.append(decryptWithServerPrivateKey(encryptedBlock));
+            }
+            // Здесь вы можете обработать расшифрованное сообщение, например, сохранить его в файл
+            return "File received and decrypted: " + decryptedMessage;
         } catch (Exception e) {
             return "Error: " + e.getMessage();
         }
@@ -73,12 +73,11 @@ public class ServerController {
 
     private String decryptWithServerPrivateKey(String encryptedMessage) throws Exception {
         logger.info("Decrypt With Server Private Key");
-        Cipher cipher = Cipher.getInstance("RSA");
+        Cipher cipher = Cipher.getInstance("RSA/ECB/OAEPWITHSHA-256ANDMGF1PADDING");
         cipher.init(Cipher.DECRYPT_MODE, serverPrivateKey);
-
         byte[] encryptedBytes = Base64.getDecoder().decode(encryptedMessage);
         byte[] decryptedBytes = cipher.doFinal(encryptedBytes);
         logger.info("Decrypted Bytes: " + decryptedBytes);
-        return new String(decryptedBytes, "UTF-8"); // Указываем кодировку
+        return new String(decryptedBytes, StandardCharsets.UTF_8); // Указываем кодировку
     }
 }
