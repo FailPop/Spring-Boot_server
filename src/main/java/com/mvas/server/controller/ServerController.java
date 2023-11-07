@@ -1,6 +1,5 @@
 package com.mvas.server.controller;
 
-import org.bouncycastle.jce.provider.BouncyCastleProvider;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.ResponseBody;
@@ -8,11 +7,9 @@ import org.springframework.web.bind.annotation.RestController;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 import java.io.UnsupportedEncodingException;
-import java.nio.charset.StandardCharsets;
 import java.security.KeyPair;
 import java.security.KeyPairGenerator;
 import java.security.NoSuchAlgorithmException;
-import java.security.Security;
 import java.security.interfaces.RSAPrivateKey;
 import java.security.interfaces.RSAPublicKey;
 import java.security.spec.X509EncodedKeySpec;
@@ -58,8 +55,8 @@ public class ServerController {
             for (String encryptedBlock : encryptedBlocks) {
                 decryptedMessage.append(decryptWithServerPrivateKey(encryptedBlock));
             }
-            System.out.println(decryptedMessage);
-            return "File received and decrypted: " + decryptedMessage;
+            // Здесь вы можете обработать расшифрованное сообщение, например, сохранить его в файл
+            return decryptedMessage.toString();
         } catch (Exception e) {
             return "Error: " + e.getMessage();
         }
@@ -74,13 +71,12 @@ public class ServerController {
     }
 
     private String decryptWithServerPrivateKey(String encryptedMessage) throws Exception {
-        Security.addProvider(new BouncyCastleProvider());
         logger.info("Decrypt With Server Private Key");
-        Cipher cipher = Cipher.getInstance("RSA/ECB/OAEPWITHSHA-256ANDMGF1PADDING", "BC");
+        Cipher cipher = Cipher.getInstance("RSA");
         cipher.init(Cipher.DECRYPT_MODE, serverPrivateKey);
         byte[] encryptedBytes = Base64.getDecoder().decode(encryptedMessage);
         byte[] decryptedBytes = cipher.doFinal(encryptedBytes);
         logger.info("Decrypted Bytes: " + decryptedBytes);
-        return new String(decryptedBytes, StandardCharsets.UTF_8); // Указываем кодировку
+        return new String(decryptedBytes, "UTF-8"); // Указываем кодировку
     }
 }
