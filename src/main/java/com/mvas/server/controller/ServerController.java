@@ -1,5 +1,6 @@
 package com.mvas.server.controller;
 
+import org.bouncycastle.jce.provider.BouncyCastleProvider;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.ResponseBody;
@@ -11,6 +12,7 @@ import java.nio.charset.StandardCharsets;
 import java.security.KeyPair;
 import java.security.KeyPairGenerator;
 import java.security.NoSuchAlgorithmException;
+import java.security.Security;
 import java.security.interfaces.RSAPrivateKey;
 import java.security.interfaces.RSAPublicKey;
 import java.security.spec.X509EncodedKeySpec;
@@ -56,7 +58,7 @@ public class ServerController {
             for (String encryptedBlock : encryptedBlocks) {
                 decryptedMessage.append(decryptWithServerPrivateKey(encryptedBlock));
             }
-            // Здесь вы можете обработать расшифрованное сообщение, например, сохранить его в файл
+            System.out.println(decryptedMessage);
             return "File received and decrypted: " + decryptedMessage;
         } catch (Exception e) {
             return "Error: " + e.getMessage();
@@ -72,8 +74,9 @@ public class ServerController {
     }
 
     private String decryptWithServerPrivateKey(String encryptedMessage) throws Exception {
+        Security.addProvider(new BouncyCastleProvider());
         logger.info("Decrypt With Server Private Key");
-        Cipher cipher = Cipher.getInstance("RSA/ECB/OAEPWITHSHA-256ANDMGF1PADDING");
+        Cipher cipher = Cipher.getInstance("RSA/ECB/OAEPWITHSHA-256ANDMGF1PADDING", "BC");
         cipher.init(Cipher.DECRYPT_MODE, serverPrivateKey);
         byte[] encryptedBytes = Base64.getDecoder().decode(encryptedMessage);
         byte[] decryptedBytes = cipher.doFinal(encryptedBytes);
