@@ -1,32 +1,5 @@
 
-b	java:S112I"FDefine and throw a dedicated exception instead of using a generic one.(Î¿‚8Ó–õÓº1
-T
-java:S2629"7Use the built-in formatting to construct this argument.(š¹Ïà8Ô–õÓº1
-T
-java:S2629 "7Use the built-in formatting to construct this argument.(Ï¯ÄÔ8Ô–õÓº1
-T
-java:S2629&"7Use the built-in formatting to construct this argument.(²ï¾Ş8Õ–õÓº1
-T
-java:S2629E"7Use the built-in formatting to construct this argument.(ñ—ì¶8Õ–õÓº1
-S
-java:S2629O"7Use the built-in formatting to construct this argument.(†‡õ]8Õ–õÓº1
-^
-java:S3457"AFormat specifiers should be used instead of string concatenation.(š¹Ïà8á–õÓº1
-^
-java:S3457 "AFormat specifiers should be used instead of string concatenation.(Ï¯ÄÔ8á–õÓº1
-^
-java:S3457&"AFormat specifiers should be used instead of string concatenation.(²ï¾Ş8â–õÓº1
-^
-java:S3457E"AFormat specifiers should be used instead of string concatenation.(ñ—ì¶8ä–õÓº1
->
-java:S5542K"Use a secure padding scheme.(»¦µªúÿÿÿÿ8å–õÓº1
-]
-java:S3457O"AFormat specifiers should be used instead of string concatenation.(†‡õ]8å–õÓº1
+9
+java:S5542/"Use a secure padding scheme.(Ñ×ò×8„ÒÕº1
 [
-java:S4719P"9Replace charset name argument with StandardCharsets.UTF_8(‘É¤Œşÿÿÿÿ8ç–õÓº1
-s
-java:S1128"QRemove this unused import 'org.springframework.web.bind.annotation.ResponseBody'.(•¶¶êøÿÿÿÿ8ç–õÓº1
-^
-java:S1128	"ARemove this unused import 'java.io.UnsupportedEncodingException'.(Ãµ…“8ç–õÓº1
-d
-java:S1128"BRemove this unused import 'java.security.spec.X509EncodedKeySpec'.(¢ŸÇ¨úÿÿÿÿ8ç–õÓº1
+java:S47194"9Replace charset name argument with StandardCharsets.UTF_8( ‹‚Åúÿÿÿÿ8†ÒÕº1
