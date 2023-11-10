@@ -32,6 +32,7 @@ import java.util.List;
 
 @RestController
 public class ServerController {
+
     private static final Logger logger = LogManager.getLogger(ServerController.class);
 
     private RSAPrivateKey serverPrivateKey;
@@ -77,7 +78,7 @@ public class ServerController {
             return errors;
 
         } catch (Exception e) {
-            return "Error: " + e.getMessage();
+            return "Unexpected error, please write your code";
         }
     }
 
