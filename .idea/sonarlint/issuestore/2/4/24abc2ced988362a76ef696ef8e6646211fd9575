@@ -1,15 +1,19 @@
 
-z
-java:S1488L"^Immediately return this expression instead of assigning it to the temporary variable "errors".(ËÆ‡88şˆâÑ»1
+b	java:S112_"FDefine and throw a dedicated exception instead of using a generic one.(ÊÁ†ç8áÛÔú¼1
+h	java:S112©"FDefine and throw a dedicated exception instead of using a generic one.(¼–ÕÌúÿÿÿÿ8è«Ùú¼1
+ƒ
+java:S1488W"gImmediately return this expression instead of assigning it to the temporary variable "encryptedErrors".(Œœå8“˜Ôú¼1
 9
-java:S5542C"Use a secure padding scheme.(Ñ×ò×8ÚäİÑ»1
+java:S5542K"Use a secure padding scheme.(Ñ×ò×8±˜Ôú¼1
+9
+java:S5542e"Use a secure padding scheme.(Ñ×ò×8³˜Ôú¼1
 
-java:S1130U"lRemove the declaration of thrown exception 'java.io.IOException', as it cannot be thrown from method's body.(™°£ùÿÿÿÿ8ÜäİÑ»1
+java:S1130p"lRemove the declaration of thrown exception 'java.io.IOException', as it cannot be thrown from method's body.(™°£ùÿÿÿÿ8´˜Ôú¼1
 
-java:S1186d"€Add a nested comment explaining why this method is empty, throw an UnsupportedOperationException or complete the implementation.(‡°Ÿ8ÑàÑ»1
-
-java:S1186h"€Add a nested comment explaining why this method is empty, throw an UnsupportedOperationException or complete the implementation.(ÿšƒ¼8ÑàÑ»1
-
-java:S1186l"€Add a nested comment explaining why this method is empty, throw an UnsupportedOperationException or complete the implementation.(‡Ï¥Õ8ÑàÑ»1
-£
-java:S1186p"€Add a nested comment explaining why this method is empty, throw an UnsupportedOperationException or complete the implementation.(«ŠõÒşÿÿÿÿ8ÑàÑ»1
+java:S1186"€Add a nested comment explaining why this method is empty, throw an UnsupportedOperationException or complete the implementation.(‡°Ÿ8¹˜Ôú¼1
+Ÿ
+java:S1186ƒ"€Add a nested comment explaining why this method is empty, throw an UnsupportedOperationException or complete the implementation.(ÿšƒ¼8º˜Ôú¼1
+Ÿ
+java:S1186‡"€Add a nested comment explaining why this method is empty, throw an UnsupportedOperationException or complete the implementation.(‡Ï¥Õ8º˜Ôú¼1
+¤
+java:S1186‹"€Add a nested comment explaining why this method is empty, throw an UnsupportedOperationException or complete the implementation.(«ŠõÒşÿÿÿÿ8º˜Ôú¼1

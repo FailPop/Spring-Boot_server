@@ -15,17 +15,18 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
 
 import javax.crypto.Cipher;
+import javax.crypto.KeyGenerator;
+import javax.crypto.SecretKey;
 import javax.crypto.spec.SecretKeySpec;
 import java.io.IOException;
+import java.nio.charset.StandardCharsets;
 import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.Paths;
-import java.security.KeyPair;
-import java.security.KeyPairGenerator;
-import java.security.NoSuchAlgorithmException;
-import java.security.Security;
+import java.security.*;
 import java.security.interfaces.RSAPrivateKey;
 import java.security.interfaces.RSAPublicKey;
+import java.security.spec.X509EncodedKeySpec;
 import java.util.ArrayList;
 import java.util.Base64;
 import java.util.List;
@@ -37,6 +38,13 @@ public class ServerController {
 
     private RSAPrivateKey serverPrivateKey;
     private RSAPublicKey serverPublicKey;
+
+    private RSAPublicKey clientPublicKey;
+
+    @PostMapping("/receiveClientPublicKey")
+    public void receiveClientPublicKey(@RequestBody String publicKey) throws Exception {
+        this.clientPublicKey = decodeRSAPublicKey(publicKey);
+    }
 
     public ServerController() throws NoSuchAlgorithmException {
         logger.info("GenerateRSAKeyPair");
@@ -75,11 +83,30 @@ public class ServerController {
             // Анализ файла с использованием Checkstyle
             String errors = analyzeCheckstyle(file);
 
-            return errors;
+            // Шифрование ошибок с помощью AES и RSA
+            String encryptedErrors = encryptWithClientPublicKey(errors);
+
+            return encryptedErrors;
 
         } catch (Exception e) {
             return "Unexpected error, please write your code";
         }
+    }
+    private String encryptWithClientPublicKey(String message) throws Exception {
+        Security.addProvider(new BouncyCastleProvider());
+
+        KeyGenerator keyGen = KeyGenerator.getInstance("AES");
+        keyGen.init(128);
+        SecretKey aesKey = keyGen.generateKey();
+        Cipher aesCipher = Cipher.getInstance("AES");
+        aesCipher.init(Cipher.ENCRYPT_MODE, aesKey);
+        byte[] encryptedMessage = aesCipher.doFinal(message.getBytes(StandardCharsets.UTF_8));
+
+        Cipher rsaCipher = Cipher.getInstance("RSA/None/OAEPWithSHA1AndMGF1Padding", "BC");
+        rsaCipher.init(Cipher.ENCRYPT_MODE, clientPublicKey);
+        byte[] encryptedAesKey = rsaCipher.doFinal(aesKey.getEncoded());
+
+        return Base64.getEncoder().encodeToString(encryptedAesKey) + ":" + Base64.getEncoder().encodeToString(encryptedMessage);
     }
 
     private String analyzeCheckstyle(Path filePath) throws IOException, CheckstyleException {
@@ -138,6 +165,12 @@ public class ServerController {
         return errorList.toString();
     }
 
+
+    private RSAPublicKey decodeRSAPublicKey(String publicKeyBase64) throws Exception {
+        byte[] publicKeyBytes = Base64.getDecoder().decode(publicKeyBase64);
+        X509EncodedKeySpec keySpec = new X509EncodedKeySpec(publicKeyBytes);
+        return (RSAPublicKey) KeyFactory.getInstance("RSA").generatePublic(keySpec);
+    }
 
     private KeyPair generateRSAKeyPair() throws NoSuchAlgorithmException {
         logger.info("GenerateRSAKeyPair");
