@@ -1,19 +1,37 @@
 
-b	java:S112_"FDefine and throw a dedicated exception instead of using a generic one.(ÊÁ†ç8áÛÔú¼1
-h	java:S112©"FDefine and throw a dedicated exception instead of using a generic one.(¼–ÕÌúÿÿÿÿ8è«Ùú¼1
+b	java:S112\"FDefine and throw a dedicated exception instead of using a generic one.(ÊÁ†ç8€º„½1
+h	java:S112­"FDefine and throw a dedicated exception instead of using a generic one.(¼–ÕÌúÿÿÿÿ8º„½1
 ƒ
-java:S1488W"gImmediately return this expression instead of assigning it to the temporary variable "encryptedErrors".(Œœå8“˜Ôú¼1
+java:S1488T"gImmediately return this expression instead of assigning it to the temporary variable "encryptedErrors".(Œœå8ÒÙ„½1
+T
+java:S2629+"7Use the built-in formatting to construct this argument.(©õÅÈ8‚º„½1
+T
+java:S2629@"7Use the built-in formatting to construct this argument.(ßıŞâ8ÓÙ„½1
+y
+java:S2629H"\Invoke method(s) only conditionally. Use the built-in formatting to construct this argument.(ëâ›”8ÓÙ„½1
+y
+java:S2629N"\Invoke method(s) only conditionally. Use the built-in formatting to construct this argument.(õøÁ°8ÓÙ„½1
+Y
+java:S2629g"7Use the built-in formatting to construct this argument.(½Øßúÿÿÿÿ8ƒº„½1
+^
+java:S3457+"AFormat specifiers should be used instead of string concatenation.(©õÅÈ8•º„½1
+^
+java:S3457@"AFormat specifiers should be used instead of string concatenation.(ßıŞâ8íÙ„½1
+^
+java:S3457H"AFormat specifiers should be used instead of string concatenation.(ëâ›”8îÙ„½1
 9
-java:S5542K"Use a secure padding scheme.(Ñ×ò×8±˜Ôú¼1
+java:S5542J"Use a secure padding scheme.(Ñ×ò×8›º„½1
+^
+java:S3457N"AFormat specifiers should be used instead of string concatenation.(õøÁ°8ğÙ„½1
 9
-java:S5542e"Use a secure padding scheme.(Ñ×ò×8³˜Ôú¼1
-
-java:S1130p"lRemove the declaration of thrown exception 'java.io.IOException', as it cannot be thrown from method's body.(™°£ùÿÿÿÿ8´˜Ôú¼1
+java:S5542d"Use a secure padding scheme.(Ñ×ò×8óÙ„½1
+c
+java:S3457g"AFormat specifiers should be used instead of string concatenation.(½Øßúÿÿÿÿ8›º„½1
 
-java:S1186"€Add a nested comment explaining why this method is empty, throw an UnsupportedOperationException or complete the implementation.(‡°Ÿ8¹˜Ôú¼1
+java:S1186"€Add a nested comment explaining why this method is empty, throw an UnsupportedOperationException or complete the implementation.(‡°Ÿ8º„½1
 Ÿ
-java:S1186ƒ"€Add a nested comment explaining why this method is empty, throw an UnsupportedOperationException or complete the implementation.(ÿšƒ¼8º˜Ôú¼1
+java:S1186ƒ"€Add a nested comment explaining why this method is empty, throw an UnsupportedOperationException or complete the implementation.(ÿšƒ¼8º„½1
 Ÿ
-java:S1186‡"€Add a nested comment explaining why this method is empty, throw an UnsupportedOperationException or complete the implementation.(‡Ï¥Õ8º˜Ôú¼1
+java:S1186‡"€Add a nested comment explaining why this method is empty, throw an UnsupportedOperationException or complete the implementation.(‡Ï¥Õ8º„½1
 ¤
-java:S1186‹"€Add a nested comment explaining why this method is empty, throw an UnsupportedOperationException or complete the implementation.(«ŠõÒşÿÿÿÿ8º˜Ôú¼1
+java:S1186‹"€Add a nested comment explaining why this method is empty, throw an UnsupportedOperationException or complete the implementation.(«ŠõÒşÿÿÿÿ8º„½1
